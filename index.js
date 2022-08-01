@@ -83,11 +83,11 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(inning, totalInnings){
+function finalScore(funInning, totalInnings){
   let score = {}
     for (let i = 0; i < totalInnings; ++i){
-      score.Home += inning()
-      score.Away += inning()
+      score.Home += funInning()
+      score.Away += funInning()
     }
     return score
 }
@@ -106,10 +106,10 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(inning) {
+function getInningScore(funInning) {
   let score = {}
-  score.Home += inning()
-  score.Away += inning()
+  score.Home = funInning()
+  score.Away = funInning()
   return score
 }
 
@@ -154,10 +154,26 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
+console.log(getInningScore(inning))
 
+function scoreboard(inningScore, inningNumber, totalInnings) {
+  let board = []
+  let homeScore = 0
+  let awayScore = 0
+  for (let i = 1; i < totalInnings + 1; ++i){
+    board[i] = `Inning ${i}: Away ${inningScore(inningNumber).Away} - Home ${inningScore(inningNumber).Home}`
+    homeScore += inningScore(inningNumber).Home
+    awayScore += inningScore(inningNumber).Away
+  }
+  if (homeScore === awayScore){
+    board[board.length] = `This game requires extra innings: Away ${awayScore} - Home ${homeScore}`
+  }
+  else {
+    board[board.length] = `Final Score: Away ${awayScore} - Home ${homeScore}`
+  }
+  return board
+}
+console.log(scoreboard(getInningScore, inning, 9))
 
 
 
