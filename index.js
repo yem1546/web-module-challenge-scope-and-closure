@@ -64,8 +64,8 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random() * 3)
 }
 
 
@@ -83,8 +83,13 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, totalInnings){
+  let score = {}
+    for (let i = 0; i < totalInnings; ++i){
+      score.Home += inning()
+      score.Away += inning()
+    }
+    return score
 }
 
 
@@ -101,9 +106,11 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
+function getInningScore(inning) {
+  let score = {}
+  score.Home += inning()
+  score.Away += inning()
+  return score
 }
 
 
